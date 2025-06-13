@@ -132,8 +132,8 @@ elif [ "$1" == "linux" ]; then
 
 elif [ "$1" == "docker" ]; then
     echo "Installing OpenPLC on Linux inside Docker"
-#    linux_install_deps
-#    install_py_deps
+    linux_install_deps
+    install_py_deps
     
     cmake_build_and_test   
     
