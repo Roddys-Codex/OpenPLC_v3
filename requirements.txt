@@ -3,3 +3,4 @@ Flask-Login==0.6.2
 pyserial==3.4
 pymodbus==2.2.0
 itsdangerous==2.0.1
+werkzeug<2.1

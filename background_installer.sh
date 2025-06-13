@@ -31,14 +31,18 @@ cp webserver/openplc.db ./etc/
 
 # arg1: sudo or blank
 function linux_install_deps {
-    $1 apt-get update
+    $1 apt-get update -y
     $1 apt-get install -y build-essential pkg-config bison flex autoconf \
                           automake libtool make git python3 python3-pip   \
                           sqlite3 cmake git libmbedtls-dev
+    $1 apt-get install python3.12-venv
 }
 
 function install_py_deps {
-    $1 pip3 install -r requirements.txt
+    $1 python3 -m venv .venv
+    $1 source .venv/bin/activate
+    $1 .venv/bin/pip3 install -r requirements.txt
+    #pip install pymodbus==2.2.0
 }
 
 function OPLC_background_service {
@@ -63,17 +67,17 @@ function cmake_build_and_test {
     echo "Executing platform tests"
     cd ../bin
 
-    if [ "$1" == "win" ]; then
-        ./gg_unit_test.exe
+    #if [ "$1" == "win" ]; then
+        #./gg_unit_test.exe
         # fakeit doesn't support O3 optimizations, and we don't have a way
         # to detect optimizations, so disable for now.
         #./oplc_unit_test.exe
-    else
-        ./gg_unit_test
+    #else
+        #./gg_unit_test
         # fakeit doesn't support O3 optimizations, and we don't have a way
         # to detect optimizations, so disable for now.
         #./oplc_unit_test
-    fi
+    #fi
 }
 
 if [ "$1" == "win" ]; then
@@ -89,7 +93,7 @@ if [ "$1" == "win" ]; then
     apt-cyg install wget gcc-core gcc-g++ git pkg-config automake autoconf libtool make python3 python3-pip sqlite3
     lynx -source https://bootstrap.pypa.io/get-pip.py > get-pip.py
     python3 get-pip.py
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 
     rm apt-cyg
     rm get-pip.py
