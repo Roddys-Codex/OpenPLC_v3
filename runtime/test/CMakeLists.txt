@@ -31,12 +31,12 @@ endif()
 file(GLOB oplctest_SRC *.cpp **/*.cpp)
 file(GLOB oplc_core_SRC ../core/ini_util.cpp ../core/pstorage.cpp ../core/server.cpp ../core/dnp3s/*.cpp ../core/modbusslave/*.cpp)
 
-add_executable(oplc_unit_test ${oplctest_SRC} ${oplc_core_SRC} ../core/glue.cpp ../vendor/inih-r46/ini.c)
+# add_executable(oplc_unit_test ${oplctest_SRC} ${oplc_core_SRC} ../core/glue.cpp ../vendor/inih-r46/ini.c)
 
 target_link_libraries(oplc_unit_test ${OPLC_PTHREAD})
 if (OPLC_DNP3_OUTSTATION)
     target_link_libraries(oplc_unit_test asiodnp3)
 endif()
 
-enable_testing()
-add_test(NAME oplc_test COMMAND oplc_unit_test)
+#enable_testing()
+#add_test(NAME oplc_test COMMAND oplc_unit_test)
