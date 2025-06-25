@@ -12,20 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.0.0)
+#cmake_minimum_required(VERSION 3.0.0)
 
 # This set builds unit tests that we can execute to validate the behavior
 # of the core runtime.
 
-include_directories(../core)
-include_directories(../core/lib)
-include_directories(../vendor/catch2-2.7.0)
-include_directories(../vendor/fakeit-2.0.5)
-include_directories(../vendor/inih-r46)
+#include_directories(../core)
+#include_directories(../core/lib)
+#include_directories(../vendor/catch2-2.7.0)
+#include_directories(../vendor/fakeit-2.0.5)
+#include_directories(../vendor/inih-r46)
 
-if (NOT OPLC_DNP3_OUTSTATION)
-    message(WARNING "Building of tests does not have DNP3 outstation enabled")
-endif()
+#if (NOT OPLC_DNP3_OUTSTATION)
+#    message(WARNING "Building of tests does not have DNP3 outstation enabled")
+#endif()
 
 # This is all of our test files
 #file(GLOB oplctest_SRC *.cpp **/*.cpp)
